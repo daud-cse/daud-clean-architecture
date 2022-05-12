@@ -24,7 +24,7 @@ namespace Daud.WebApi.Controllers
             this.tokenService= tokenService;
             this.userRepository = userRepository;
            // this.http = http;
-            appSettingsJson = optionsSnapshot.Value;
+            this.appSettingsJson = optionsSnapshot.Value;
         }
 
         [HttpPost("token") ,AllowAnonymous]

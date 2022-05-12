@@ -6,9 +6,14 @@ using Microsoft.IdentityModel.Tokens;
 using Daud.ApplicationCore;
 using Daud.Infrastructure;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Daud.ApplicationCore.Utils;
 
+IConfiguration configuration = new ConfigurationBuilder()
+                            .AddJsonFile("appsettings.json", optional: false)
+                            .Build();
 var builder = WebApplication.CreateBuilder(args);
-
+//private readonly IConfiguration _configuration;
 // Add services to the container.
 
 builder.Services.AddApplicationCore();
@@ -18,6 +23,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
+//builder.Configuration.AddJsonFile("errorcodes.json", false, true);
+builder.Services.AddOptions<AppSettingsJson>().Bind(configuration)              
+               .ValidateDataAnnotations();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
     opt.TokenValidationParameters = new()
