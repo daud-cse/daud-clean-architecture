@@ -3,11 +3,13 @@ using Daud.ApplicationCore.DTOs;
 using Daud.ApplicationCore.Exceptions;
 using Daud.ApplicationCore.Interfaces;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Daud.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -20,6 +22,7 @@ namespace Daud.WebApi.Controllers
         [HttpGet]
         public ActionResult<List<ProductResponse>> GetProducts()
         {
+           var userName= User.Identity.Name;
             return Ok(this.productRepository.GetProducts());
         }
 
