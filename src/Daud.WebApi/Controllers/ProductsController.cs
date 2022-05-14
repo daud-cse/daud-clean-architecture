@@ -9,7 +9,7 @@ namespace Daud.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;

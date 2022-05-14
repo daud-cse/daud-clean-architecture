@@ -79,6 +79,44 @@ namespace Daud.WebApi.Controllers
         //        return await Task.FromResult(StatusCode(StatusCodes.Status500InternalServerError, ex.Message));
         //    }
         //}
+        //[HttpPost]
+        //[Route("login")]
+        //public async Task<IActionResult> Login([FromBody] LoginModel model)
+        //{
+        //    var user = await _userManager.FindByNameAsync(model.Username);
+        //    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+        //    {
+        //        var userRoles = await _userManager.GetRolesAsync(user);
 
+        //        var authClaims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, user.UserName),
+        //            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //        };
+
+        //        foreach (var userRole in userRoles)
+        //        {
+        //            authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+        //        }
+
+        //        var token = CreateToken(authClaims);
+        //        var refreshToken = GenerateRefreshToken();
+
+        //        _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+
+        //        user.RefreshToken = refreshToken;
+        //        user.RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshTokenValidityInDays);
+
+        //        await _userManager.UpdateAsync(user);
+
+        //        return Ok(new
+        //        {
+        //            Token = new JwtSecurityTokenHandler().WriteToken(token),
+        //            RefreshToken = refreshToken,
+        //            Expiration = token.ValidTo
+        //        });
+        //    }
+        //    return Unauthorized();
+        //}
     }
 }

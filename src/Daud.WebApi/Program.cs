@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using Daud.ApplicationCore;
 using Daud.Infrastructure;
 using System.Text;
+using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 //private readonly IConfiguration _configuration;
@@ -55,8 +57,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddAuthorization();
 //builder.Configuration.AddJsonFile("errorcodes.json", false, true);
-builder.Services.AddOptions<AppSettingsJson>().Bind(configuration)              
-               .ValidateDataAnnotations();
+//builder.Services.AddOptions<AppSettingsJson>().Bind(configuration)              
+//               .ValidateDataAnnotations();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
     opt.TokenValidationParameters = new()

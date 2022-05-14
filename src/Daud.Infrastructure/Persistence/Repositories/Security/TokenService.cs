@@ -31,6 +31,9 @@ namespace Daud.Infrastructure.Persistence.Repositories.Security
 
         }
 
+
+
+
         //private async Task<TokenResult> BuildToken(JwtTokenInfo request)
         //{
         //    TokenResult tokenResult = new TokenResult();
