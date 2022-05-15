@@ -6,6 +6,6 @@ namespace Daud.ApplicationCore.DTOs
 {
     public class RequestObj
     {
-        public object Obj { get; set; }
+        public object requestObject { get; set; }
     }
 }

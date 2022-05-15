@@ -7,6 +7,7 @@ using Daud.ApplicationCore.Interfaces.Security;
 using Daud.ApplicationCore.Interfaces.Users;
 using Daud.ApplicationCore.Utils;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Daud.WebApi.Controllers
 {
@@ -28,9 +29,10 @@ namespace Daud.WebApi.Controllers
         }
 
         [HttpPost("token") ,AllowAnonymous]
-        public async Task<IActionResult> Token(UserModel userModel)
+        public async Task<IActionResult> Token(RequestObj requestObj)
         {
-
+            //UserModel userModel = new UserModel();
+            var userModel = JsonConvert.DeserializeObject<UserModel>(requestObj.requestObject.ToString());
             //if (request.Grant_type == "password")
             //{
             //    var response = await BuildToken(request);
@@ -47,6 +49,7 @@ namespace Daud.WebApi.Controllers
             //    return response;
             //}
             // var userModel = await HttpContext.Request.ReadFromJsonAsync<UserModel>();
+          
             var userDto = userRepository.GetUser(userModel);
             if (userDto == null)
             {
@@ -58,7 +61,7 @@ namespace Daud.WebApi.Controllers
             var token = tokenService.BuildToken(appSettingsJson.Jwt_Key, appSettingsJson.Jwt_Issuer, userDto);
             //await HttpContext.Response.WriteAsJsonAsync(new { token = token });
           //  return;
-            return await Task.FromResult(Ok(token));
+            return await Task.FromResult(Ok(new { token = token }));
         }
 
         ////GET : /logout

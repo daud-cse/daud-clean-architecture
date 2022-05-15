@@ -9,6 +9,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 //private readonly IConfiguration _configuration;
 // Add services to the container.
@@ -18,6 +19,16 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors();
+//    (options =>
+//{
+//    options.AddDefaultPolicy(
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("http://localhost:4200",
+//                                              "http://localhost:4200");
+//                      });
+//});
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -75,6 +86,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 await using var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors(c=>c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
