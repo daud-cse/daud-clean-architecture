@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Daud.ApplicationCore\DotNet.ApplicationCore.csproj" />
+    <ProjectReference Include="..\..\src\DotNet.ApplicationCore\DotNet.ApplicationCore.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ using DotNet.Infrastructure.Persistence.Contexts;
 
 namespace Store.Infrastructure.Migrations
 {
-    [DbContext(typeof(DaudContext))]
+    [DbContext(typeof(DotNetContext))]
     [ExcludeFromCodeCoverage]
     partial class StoreContextModelSnapshot : ModelSnapshot
     {

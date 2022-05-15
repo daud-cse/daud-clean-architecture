@@ -3,9 +3,9 @@ using DotNet.ApplicationCore.Entities;
 
 namespace DotNet.Infrastructure.Persistence.Contexts
 {
-    public class DaudContext : DbContext
+    public class DotNetContext : DbContext
     {
-        public DaudContext(DbContextOptions<DaudContext> options) : base(options)
+        public DotNetContext(DbContextOptions<DotNetContext> options) : base(options)
         {
         }
 

@@ -19,7 +19,7 @@ namespace DotNet.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<DaudContext>(options =>
+            services.AddDbContext<DotNetContext>(options =>
                options.UseSqlServer(defaultConnectionString));
 
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -30,7 +30,7 @@ namespace DotNet.Infrastructure
             var serviceProvider = services.BuildServiceProvider();
             try
             {
-                var dbContext = serviceProvider.GetRequiredService<DaudContext>();
+                var dbContext = serviceProvider.GetRequiredService<DotNetContext>();
                 dbContext.Database.Migrate();
             }
             catch

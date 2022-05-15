@@ -11,7 +11,7 @@ using DotNet.Infrastructure.Persistence.Contexts;
 
 namespace Daud.Infrastructure.Migrations
 {
-    [DbContext(typeof(DaudContext))]
+    [DbContext(typeof(DotNetContext))]
     [Migration("20211108211740_InitialCreate")]
     partial class InitialCreate
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Daud.UnitTests.DTOs
+namespace DotNet.UnitTests.DTOs
 {
     public abstract class BaseTests
     {

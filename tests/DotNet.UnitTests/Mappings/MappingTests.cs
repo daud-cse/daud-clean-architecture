@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Daud.ApplicationCore.DTOs;
-using Daud.ApplicationCore.Entities;
-using Daud.ApplicationCore.Mappings;
-using Daud.ApplicationCore.Utils;
+using DotNet.ApplicationCore.DTOs;
+using DotNet.ApplicationCore.Entities;
+using DotNet.ApplicationCore.Mappings;
+using DotNet.ApplicationCore.Utils;
 using System;
 using System.Runtime.Serialization;
 using Xunit;
 
-namespace Daud.UnitTests.Mappings
+namespace DotNet.UnitTests.Mappings
 {
     public class MappingTests
     {

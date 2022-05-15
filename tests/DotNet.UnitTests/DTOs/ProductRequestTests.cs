@@ -1,7 +1,7 @@
-﻿using Daud.ApplicationCore.DTOs;
+﻿using DotNet.ApplicationCore.DTOs;
 using Xunit;
 
-namespace Store.UnitTests.DTOs
+namespace DotNet.UnitTests.DTOs
 {
     public class ProductRequestTests : BaseTests
     {

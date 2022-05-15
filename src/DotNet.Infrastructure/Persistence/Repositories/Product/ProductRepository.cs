@@ -12,10 +12,10 @@ namespace DotNet.Infrastructure.Persistence.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly DaudContext storeContext;
+        private readonly DotNetContext storeContext;
         private readonly IMapper mapper;
 
-        public ProductRepository(DaudContext storeContext, IMapper mapper)
+        public ProductRepository(DotNetContext storeContext, IMapper mapper)
         {
             this.storeContext = storeContext;
             this.mapper = mapper;

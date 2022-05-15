@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Daud.ApplicationCore.DTOs;
-using Daud.ApplicationCore.Exceptions;
-using Daud.ApplicationCore.Mappings;
-using Daud.Infrastructure.Persistence.Repositories;
+using DotNet.ApplicationCore.DTOs;
+using DotNet.ApplicationCore.Exceptions;
+using DotNet.ApplicationCore.Mappings;
+using DotNet.Infrastructure.Persistence.Repositories;
 using Xunit;
 
-namespace Daud.IntegrationTests.Repositories
+namespace DotNet.IntegrationTests.Repositories
 {
     public class ProductRepositoryTests : IClassFixture<SharedDatabaseFixture>
     {

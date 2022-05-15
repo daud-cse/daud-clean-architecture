@@ -1,7 +1,7 @@
-﻿using Daud.ApplicationCore.Utils;
+﻿using DotNet.ApplicationCore.Utils;
 using Xunit;
 
-namespace Daud.UnitTests.Utils
+namespace DotNet.UnitTests.Utils
 {
     public class DateUtilTests
     {
