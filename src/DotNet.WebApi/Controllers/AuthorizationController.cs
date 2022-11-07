@@ -31,6 +31,9 @@ namespace DotNet.WebApi.Controllers
         [HttpPost("token") ,AllowAnonymous]
         public async Task<IActionResult> Token(RequestObj requestObj)
         {
+            //{
+            //    "requestObject":{ "UserName":"daud","Password":"123456"}
+            //}
             //UserModel userModel = new UserModel();
             var userModel = JsonConvert.DeserializeObject<UserModel>(requestObj.requestObject.ToString());
             //if (request.Grant_type == "password")
@@ -55,10 +58,8 @@ namespace DotNet.WebApi.Controllers
             {
                 HttpContext.Response.StatusCode = 401;
                 return await Task.FromResult(Ok(HttpContext.Response.StatusCode));
-            }
-            appSettingsJson.Jwt_Key = "ThisWouldBeReplacedBySecretKey";
-            appSettingsJson.Jwt_Issuer = "www.bytelanguage.net";
-            var token = tokenService.BuildToken(appSettingsJson.Jwt_Key, appSettingsJson.Jwt_Issuer, userDto);
+            }          
+            var token = tokenService.BuildToken(userDto);
             //await HttpContext.Response.WriteAsJsonAsync(new { token = token });
           //  return;
             return await Task.FromResult(Ok(new { token = token }));
