@@ -14,6 +14,7 @@ namespace DotNet.ApplicationCore.DTOs
         }
 
         public string UserName { get; set; }
+        public int OrginzationId { get; set; }
         public string Password { get; set; }
     }
 }

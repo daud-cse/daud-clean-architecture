@@ -4,12 +4,16 @@ using DotNet.ApplicationCore.Exceptions;
 using DotNet.ApplicationCore.Interfaces;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DotNet.WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     [Authorize]
+    [Route("api/Products")]
+    [ApiController]
+    //[Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -19,10 +23,40 @@ namespace DotNet.WebApi.Controllers
             this.productRepository = productRepository;
         }
 
+
+
+        protected async Task<int> GetCompanyIdFromClaimAsync()
+        {
+            var principal = this.HttpContext.User;
+            if (principal == null) throw new Exception("Orginzation not found");
+            var claims = principal.Claims.ToList();
+            var companyId = claims.FirstOrDefault(c => c.Type == "OrginzationId")?.Value;
+            return await System.Threading.Tasks.Task.FromResult(Convert.ToInt32(companyId));
+        }
+        protected int GetCompanyIdFromClaim()
+        {
+            var principal = this.HttpContext.User;
+            if (principal == null) throw new Exception("Orginzation not found");
+            var claims = principal.Claims.ToList();
+            var companyId = claims.FirstOrDefault(c => c.Type == "OrginzationId")?.Value;
+            return Convert.ToInt32(companyId);
+        }
+        protected string GetUserIdFromClaim()
+        {
+            var principal = this.HttpContext.User;
+            if (principal == null) throw new Exception("UserId not found");
+            var claims = principal.Claims.ToList();
+            var companyId = claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+            return Convert.ToString(companyId);
+        }
         [HttpGet]
+       
         public ActionResult<List<ProductResponse>> GetProducts()
         {
-           var userName= User.Identity.Name;
+           //var userName= User.Identity.Name;
+          var orgId=  GetCompanyIdFromClaim();
+            var userId = GetUserIdFromClaim();
+            //var OrginzationId = User.Identities.
             return Ok(this.productRepository.GetProducts());
         }
 

@@ -28,6 +28,7 @@ namespace DotNet.Infrastructure.Persistence.Repositories.Security
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("UserId", user.UserName.ToString()),
+                        new Claim("OrginzationId", "1"),
                         //new Claim("DisplayName", user.DisplayName),
                         //new Claim("UserName", user.UserName),
                         //new Claim("Email", user.Email)

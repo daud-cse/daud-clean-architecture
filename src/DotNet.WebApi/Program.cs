@@ -70,17 +70,31 @@ builder.Services.AddAuthorization();
 //builder.Configuration.AddJsonFile("errorcodes.json", false, true);
 //builder.Services.AddOptions<AppSettingsJson>().Bind(configuration)              
 //               .ValidateDataAnnotations();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddJwtBearer(opt =>
+//{
+//    opt.TokenValidationParameters = new()
+//    {
+//cc
+//    };
+//})
+    .AddJwtBearer(x =>
 {
-    opt.TokenValidationParameters = new()
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+        ValidateIssuer = false,
+        ValidateAudience = false
+        //ValidateIssuer = true,
+        //ValidateAudience = true,
+        //ValidateLifetime = true,
+        //ValidateIssuerSigningKey = true,
+        //ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        //ValidAudience = builder.Configuration["Jwt:Issuer"],
+        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
 await using var app = builder.Build();
