@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace DotNet.Infrastructure.Persistence.Repositories.Security
 {
@@ -20,7 +21,7 @@ namespace DotNet.Infrastructure.Persistence.Repositories.Security
         {
             _configuration = config;
         }
-        public string BuildToken(UserDto user)
+        public TokenResult BuildToken(UserDto user)
         {
             //create claims details based on the user information
             var claims = new[] {
@@ -46,7 +47,14 @@ namespace DotNet.Infrastructure.Persistence.Repositories.Security
                 claims,
                 expires: DateTime.UtcNow.AddMinutes(10),
                 signingCredentials: signIn);
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenResult = new TokenResult
+            {
+                Access_token = new JwtSecurityTokenHandler().WriteToken(token),
+                Expiration = token.ValidTo,
+                StatusCode = StatusCodes.Status200OK,
+                Message = "Success"
+            };
+            return tokenResult;
 
         }
 

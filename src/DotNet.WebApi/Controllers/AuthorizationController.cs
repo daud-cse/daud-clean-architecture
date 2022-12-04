@@ -62,16 +62,9 @@ namespace DotNet.WebApi.Controllers
             var token = tokenService.BuildToken(userDto);
             //await HttpContext.Response.WriteAsJsonAsync(new { token = token });
           //  return;
-            return await Task.FromResult(Ok(new { token =new  TokenResult() }));
+            return await Task.FromResult(Ok(new { token }));
         }
-        public class TokenResult
-        {
-            public string Access_token { get; set; }
-            //public DateTime? Expiration { get; set; }
-            public string UserEmail { get; set; }
-            public int StatusCode { get; set; }
-            public string Message { get; set; }
-        }
+       
         ////GET : /logout
         //[HttpGet("~/logout")]
         //public async Task<IActionResult> Logout()

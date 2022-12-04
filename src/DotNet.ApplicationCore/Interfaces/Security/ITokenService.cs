@@ -7,6 +7,6 @@ namespace DotNet.ApplicationCore.Interfaces.Security
 {
     public interface ITokenService
     {
-        string BuildToken( UserDto user);
+        TokenResult BuildToken( UserDto user);
     }
 }
