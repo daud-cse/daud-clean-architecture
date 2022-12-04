@@ -29,13 +29,13 @@ namespace DotNet.WebApi.Controllers
         }
 
         [HttpPost("token") ,AllowAnonymous]
-        public async Task<IActionResult> Token(RequestObj requestObj)
+        public async Task<IActionResult> Token(UserModel userModel)
         {
             //{
             //    "requestObject":{ "UserName":"daud","Password":"123456"}
             //}
             //UserModel userModel = new UserModel();
-            var userModel = JsonConvert.DeserializeObject<UserModel>(requestObj.requestObject.ToString());
+            //var userModel = JsonConvert.DeserializeObject<UserModel>(requestObj.requestObject.ToString());
             //if (request.Grant_type == "password")
             //{
             //    var response = await BuildToken(request);
@@ -62,9 +62,16 @@ namespace DotNet.WebApi.Controllers
             var token = tokenService.BuildToken(userDto);
             //await HttpContext.Response.WriteAsJsonAsync(new { token = token });
           //  return;
-            return await Task.FromResult(Ok(new { token = token }));
+            return await Task.FromResult(Ok(new { token =new  TokenResult() }));
         }
-
+        public class TokenResult
+        {
+            public string Access_token { get; set; }
+            //public DateTime? Expiration { get; set; }
+            public string UserEmail { get; set; }
+            public int StatusCode { get; set; }
+            public string Message { get; set; }
+        }
         ////GET : /logout
         //[HttpGet("~/logout")]
         //public async Task<IActionResult> Logout()

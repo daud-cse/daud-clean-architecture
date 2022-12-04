@@ -14,7 +14,7 @@ namespace DotNet.ApplicationCore.DTOs
         
         public string Password { get; set; }
 
-        //public string Grant_type { get; set; }
+        public string Grant_type { get; set; }
         //public string Username { get; set; }
         //public string Password { get; set; }
         //public string CompanyId { get; set; }
