@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using DotNet.ApplicationCore.DTOs;
 using DotNet.ApplicationCore.Interfaces.Security;
-using DotNet.ApplicationCore.Interfaces.Users;
+using DotNet.ApplicationCore.Interfaces.User;
 using DotNet.ApplicationCore.Utils;
 using System.Threading.Tasks;
 using Newtonsoft.Json;

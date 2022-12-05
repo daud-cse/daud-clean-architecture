@@ -2,13 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DotNet.ApplicationCore.Interfaces;
+using DotNet.ApplicationCore.Interfaces.User;
 using DotNet.ApplicationCore.Interfaces.Security;
-using DotNet.ApplicationCore.Interfaces.Users;
 using DotNet.Infrastructure.Persistence.Contexts;
 using DotNet.Infrastructure.Persistence.Repositories;
 using DotNet.Infrastructure.Persistence.Repositories.Security;
-using DotNet.Infrastructure.Persistence.Repositories.Users;
+using DotNet.Infrastructure.Persistence.Repositories.User;
 using System.Diagnostics.CodeAnalysis;
 
 namespace DotNet.Infrastructure
@@ -22,11 +21,11 @@ namespace DotNet.Infrastructure
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DotNetContext>(options =>
                options.UseSqlServer(defaultConnectionString));
-
-            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<DbContext, DotNetContext>();
+            // services.AddScoped<IProductRepository, ProductRepository>();            
             services.AddSingleton<ITokenService, TokenService>();
-            services.AddSingleton<IUserRepository,UserRepository>();
-            
+            services.AddScoped<IUserRepository,UserRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var serviceProvider = services.BuildServiceProvider();
             try
