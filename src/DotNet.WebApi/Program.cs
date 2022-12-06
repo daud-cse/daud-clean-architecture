@@ -8,6 +8,8 @@ using DotNet.Infrastructure;
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
+using DotNet.Services.Interfaces;
+using DotNet.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationCore();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddControllers();
 //builder.Services.AddControllers().AddJsonOptions(x =>
 //                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -108,12 +111,26 @@ app.UseCors(c=>c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 else
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseSwaggerUI("/swagger/index.html");
+
+    //app.UseSwaggerUI(c =>
+    //{
+    //    c.SwaggerEndpoint("/swagger/index.html", "My Cool API V1");
+    //   // c.RoutePrefix = "mycoolapi/swagger";
+    //});
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 
 app.UseAuthorization();

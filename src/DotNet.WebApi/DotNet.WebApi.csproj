@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
 	<ImplicitUsings>disable</ImplicitUsings>
-	  <AspNetCoreHostingModel>OutProcess</AspNetCoreHostingModel>
+	  <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
 	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	  <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotNet.Infrastructure\DotNet.Infrastructure.csproj" />
+    <ProjectReference Include="..\DotNet.Services\DotNet.Services.csproj" />
   </ItemGroup>
 
 </Project>

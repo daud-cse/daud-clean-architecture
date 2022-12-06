@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.UnitTests", "tests\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.IntegrationTests", "tests\DotNet.IntegrationTests\DotNet.IntegrationTests.csproj", "{DA1BC996-BAB4-4FD9-A94A-E38B6181E17A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Services", "src\DotNet.Services\DotNet.Services.csproj", "{EAC655BB-F547-40DD-A182-0F2C79E11B03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{DA1BC996-BAB4-4FD9-A94A-E38B6181E17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA1BC996-BAB4-4FD9-A94A-E38B6181E17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA1BC996-BAB4-4FD9-A94A-E38B6181E17A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC655BB-F547-40DD-A182-0F2C79E11B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC655BB-F547-40DD-A182-0F2C79E11B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC655BB-F547-40DD-A182-0F2C79E11B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC655BB-F547-40DD-A182-0F2C79E11B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{FA30AF1B-7F01-4B93-83B6-D55852259B52} = {A98E282B-3323-452D-AB43-6D5A4346924D}
 		{F6FA0C39-7C4F-4511-90D5-507D23D90044} = {A6E8ECBB-EE1B-4FD8-B53A-877A64A02EBD}
 		{DA1BC996-BAB4-4FD9-A94A-E38B6181E17A} = {A6E8ECBB-EE1B-4FD8-B53A-877A64A02EBD}
+		{EAC655BB-F547-40DD-A182-0F2C79E11B03} = {A98E282B-3323-452D-AB43-6D5A4346924D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6F246E7-577E-42ED-9C0E-8418EDD64F77}
