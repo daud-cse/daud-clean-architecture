@@ -6,6 +6,8 @@ using DotNet.ApplicationCore.Interfaces.User;
 using DotNet.Infrastructure.Persistence.Contexts;
 using DotNet.Infrastructure.Persistence.Repositories.User;
 using System.Diagnostics.CodeAnalysis;
+using DotNet.ApplicationCore.Interfaces;
+using DotNet.Infrastructure.Persistence.Repositories;
 
 namespace DotNet.Infrastructure
 {
@@ -16,11 +18,10 @@ namespace DotNet.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<DotNetContext>(options =>
-               options.UseSqlServer(defaultConnectionString));
+            services.AddDbContext<DotNetContext>(options => options.UseSqlServer(defaultConnectionString));
             services.AddScoped<DbContext, DotNetContext>();
-            // services.AddScoped<IProductRepository, ProductRepository>();            
-           
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
