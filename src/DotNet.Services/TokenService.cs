@@ -1,17 +1,14 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using DotNet.ApplicationCore.DTOs;
-using DotNet.ApplicationCore.Interfaces.Security;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
+﻿
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using DotNet.ApplicationCore.DTOs;
 using Microsoft.AspNetCore.Http;
+using DotNet.Services.Interfaces;
 
-namespace DotNet.Infrastructure.Persistence.Repositories.Security
+namespace DotNet.Services
 {
     public class TokenService : ITokenService
     {

@@ -10,13 +10,9 @@ namespace DotNet.ApplicationCore.Mappings
         {
             CreateMap<CreateProductRequest, Product>()
                 .ForMember(dest =>
-                    dest.Id,
+                    dest.ProductId,
                     opt => opt.Ignore()
-                )
-                .ForMember(dest =>
-                    dest.Stock,
-                    opt => opt.Ignore()
-                )
+                )                
                 .ForMember(dest =>
                     dest.CreatedAt,
                     opt => opt.Ignore()

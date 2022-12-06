@@ -3,10 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DotNet.ApplicationCore.Interfaces.User;
-using DotNet.ApplicationCore.Interfaces.Security;
 using DotNet.Infrastructure.Persistence.Contexts;
-using DotNet.Infrastructure.Persistence.Repositories;
-using DotNet.Infrastructure.Persistence.Repositories.Security;
 using DotNet.Infrastructure.Persistence.Repositories.User;
 using System.Diagnostics.CodeAnalysis;
 
@@ -23,7 +20,7 @@ namespace DotNet.Infrastructure
                options.UseSqlServer(defaultConnectionString));
             services.AddScoped<DbContext, DotNetContext>();
             // services.AddScoped<IProductRepository, ProductRepository>();            
-            services.AddSingleton<ITokenService, TokenService>();
+           
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
