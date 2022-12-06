@@ -76,7 +76,7 @@ namespace DotNet.Services
         {
             if (productDetails != null)
             {
-                var product = await _unitOfWork.Products.GetById(productDetails.Id);
+                var product = await _unitOfWork.Products.GetById(productDetails.ProductId);
                 if (product != null)
                 {
                     //product.ProductName = productDetails.ProductName;

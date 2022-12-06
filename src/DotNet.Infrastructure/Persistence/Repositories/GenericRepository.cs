@@ -1,5 +1,6 @@
 ﻿using DotNet.ApplicationCore.Interfaces;
 using DotNet.Infrastructure.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,29 +17,29 @@ namespace DotNet.Infrastructure.Persistence.Repositories
         {
             this._dotnetContext = dotnetContext;
         }
-        public Task Add(T entity)
+        public async Task<T> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _dotnetContext.Set<T>().FindAsync(id);
+        }
+
+        public async Task<IEnumerable<T>> GetAll()
+        {
+            return await _dotnetContext.Set<T>().ToListAsync();
+        }
+
+        public async Task Add(T entity)
+        {
+            await _dotnetContext.Set<T>().AddAsync(entity);
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<T>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetById(int id)
-        {
-            throw new NotImplementedException();
+            _dotnetContext.Set<T>().Remove(entity);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _dotnetContext.Set<T>().Update(entity);
         }
     }
 }
