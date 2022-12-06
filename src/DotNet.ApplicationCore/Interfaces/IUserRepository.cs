@@ -8,8 +8,6 @@ namespace DotNet.ApplicationCore.Interfaces
 {
 
     public interface IUserRepository: IGenericRepository<Users>
-    {
-       // UserDto GetUser(UserModel userModel);
-       //Task<List<Users>> GetUsers();
+    {      
     }
 }
