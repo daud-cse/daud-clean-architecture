@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using DotNet.ApplicationCore.DTOs;
-using DotNet.ApplicationCore.Interfaces.User;
+using DotNet.ApplicationCore.Interfaces;
 using DotNet.ApplicationCore.Utils;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -15,15 +15,15 @@ namespace DotNet.WebApi.Controllers
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserService _userService;
         private readonly ITokenService tokenService;
         private readonly AppSettingsJson appSettingsJson;
         //private readonly HttpContext http;
 
-        public AuthorizationController( ITokenService tokenService,IUserRepository userRepository, IOptionsSnapshot<AppSettingsJson> optionsSnapshot)
+        public AuthorizationController( ITokenService tokenService, IUserService userService, IOptionsSnapshot<AppSettingsJson> optionsSnapshot)
         {
             this.tokenService= tokenService;
-            this.userRepository = userRepository;
+            this._userService = userService;
            // this.http = http;
             this.appSettingsJson = optionsSnapshot.Value;
         }
@@ -53,7 +53,7 @@ namespace DotNet.WebApi.Controllers
             //}
             // var userModel = await HttpContext.Request.ReadFromJsonAsync<UserModel>();
           
-            var userDto = userRepository.GetUser(userModel);
+            var userDto = _userService.GetUser(userModel);
             if (userDto == null)
             {
                 HttpContext.Response.StatusCode = 401;

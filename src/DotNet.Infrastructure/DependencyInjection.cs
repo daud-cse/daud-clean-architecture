@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DotNet.ApplicationCore.Interfaces.User;
+using DotNet.ApplicationCore.Interfaces;
 using DotNet.Infrastructure.Persistence.Contexts;
 using DotNet.Infrastructure.Persistence.Repositories.User;
 using System.Diagnostics.CodeAnalysis;

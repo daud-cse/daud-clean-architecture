@@ -19,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationCore();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddControllers();
 //builder.Services.AddControllers().AddJsonOptions(x =>

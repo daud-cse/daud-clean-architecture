@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using DotNet.ApplicationCore.Entities;
-namespace DotNet.ApplicationCore.Interfaces.User
+namespace DotNet.ApplicationCore.Interfaces
 {
 
-    public interface IUserRepository
+    public interface IUserRepository: IGenericRepository<Users>
     {
-        UserDto GetUser(UserModel userModel);
-       Task<List<Users>> GetUsers();
+       // UserDto GetUser(UserModel userModel);
+       //Task<List<Users>> GetUsers();
     }
 }

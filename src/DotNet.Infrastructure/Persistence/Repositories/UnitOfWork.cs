@@ -12,12 +12,16 @@ namespace DotNet.Infrastructure.Persistence.Repositories
     {
         private readonly DotNetContext _dotnetContext;
         public IProductRepository Products { get; }
+        public IUserRepository Users { get; }
 
         public UnitOfWork(DotNetContext dotnetContext,
-                            IProductRepository productRepository)
+                            IProductRepository productRepository,
+                            IUserRepository userRepository
+            )
         {
             _dotnetContext = dotnetContext;
             Products = productRepository;
+            Users = userRepository;
         }
 
         public int Save()

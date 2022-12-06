@@ -1,5 +1,6 @@
 ﻿using DotNet.ApplicationCore.DTOs;
-using DotNet.ApplicationCore.Interfaces.User;
+using DotNet.ApplicationCore.Interfaces;
+using DotNet.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -14,17 +15,17 @@ namespace DotNet.WebApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
-        public UsersController(IUserRepository userRepository)
+        private readonly IUserService _userService;
+        public UsersController(IUserService userService)
         {
-            this._userRepository = userRepository;
+            this._userService = userService;
         }
 
         // GET: api/<UsersController>
         [HttpGet]
         public  async Task<ActionResult<List<UserDto>>> Get()
         {
-            var users=await _userRepository.GetUsers();
+            var users=await _userService.GetUsers();
             return Ok(users);          
         }
 
