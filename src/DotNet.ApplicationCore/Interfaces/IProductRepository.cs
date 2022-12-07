@@ -6,5 +6,6 @@ namespace DotNet.ApplicationCore.Interfaces
 {
     public interface IProductRepository : IGenericRepository<Product>
     {     
+
     }
 }
