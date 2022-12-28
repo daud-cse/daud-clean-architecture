@@ -117,34 +117,31 @@ app.UseAuthorization();
 
 app.UseCors(c=>c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-app.Run(async context =>
-{
-    if (context.Request.Path.Value.Contains("hoxronotification"))
-    {
-        return;
-    }
-   // else if (context.Request.Path.Value.Contains(Configuration[Utiltiy.StaticData.Document.FOLDER_ACCESS_FROM_FRONT_END]))
-    //{
-        //var directory = env.ContentRootPath;
-        //var path = context.Request.Path.Value;
-        //if (path.Contains(Utiltiy.StaticData.Extensions.Htm))
-        //{
-          //  context.Response.ContentType = Utiltiy.StaticData.MimeType.Application_Octet_Stream;
-        //}
-      //  await context.Response.SendFileAsync(directory + path);
-    //}
-    //else 
-    else if (context.Request.Path.Value == "/")
-    {
-        string ver = Assembly.GetEntryAssembly()?.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
-        //await context.Response.WriteAsync($"{{status :'API is Running.'}} Version: {ver} Environment: {env.EnvironmentName}");
-        await context.Response.WriteAsync($"{{status :'API is Running.'}} Version: {ver} Environment: Prod");
-    }
-    else
-    {
-        await context.Response.WriteAsync("{ status :'404 Method Not Found'}");
-    }
-});
+//app.Run(async context =>
+//{
+    
+//   // else if (context.Request.Path.Value.Contains(Configuration[Utiltiy.StaticData.Document.FOLDER_ACCESS_FROM_FRONT_END]))
+//    //{
+//        //var directory = env.ContentRootPath;
+//        //var path = context.Request.Path.Value;
+//        //if (path.Contains(Utiltiy.StaticData.Extensions.Htm))
+//        //{
+//          //  context.Response.ContentType = Utiltiy.StaticData.MimeType.Application_Octet_Stream;
+//        //}
+//      //  await context.Response.SendFileAsync(directory + path);
+//    //}
+//    //else 
+//     if (context.Request.Path.Value == "/")
+//    {
+//        string ver = Assembly.GetEntryAssembly()?.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
+//        //await context.Response.WriteAsync($"{{status :'API is Running.'}} Version: {ver} Environment: {env.EnvironmentName}");
+//        await context.Response.WriteAsync($"{{status :'API is Running.'}} Version: {ver} Environment: Prod");
+//    }
+//    else
+//    {
+//        await context.Response.WriteAsync("{ status :'404 Method Not Found'}");
+//    }
+//});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
