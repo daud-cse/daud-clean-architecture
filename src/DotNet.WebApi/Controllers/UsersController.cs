@@ -22,7 +22,7 @@ namespace DotNet.WebApi.Controllers
         }
 
         // GET: api/<UsersController>
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public  async Task<ActionResult<List<UserDto>>> Get()
         {
             var users=await _userService.GetUsers();

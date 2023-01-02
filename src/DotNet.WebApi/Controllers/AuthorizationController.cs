@@ -11,7 +11,12 @@ using DotNet.Services.Interfaces;
 
 namespace DotNet.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("api/Authorization")]
+
+
+
+    
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
@@ -28,42 +33,42 @@ namespace DotNet.WebApi.Controllers
             this.appSettingsJson = optionsSnapshot.Value;
         }
 
-        [HttpPost("token") ,AllowAnonymous]
-        public async Task<IActionResult> Token(UserModel userModel)
-        {
-            //{
-            //    "requestObject":{ "UserName":"daud","Password":"123456"}
-            //}
-            //UserModel userModel = new UserModel();
-            //var userModel = JsonConvert.DeserializeObject<UserModel>(requestObj.requestObject.ToString());
-            //if (request.Grant_type == "password")
-            //{
-            //    var response = await BuildToken(request);
-            //    return await Task.FromResult(Ok(response));
-            //}
-            //else if (request.Grant_type == "withoutPassword")
-            //{
-            //    var response = await BuildTokenForAnotherCompany(Convert.ToInt16(request.CompanyId), request.Username);
-            //    return await Task.FromResult(Ok(response));
-            //}
-            //else if (request.Grant_type == "refresh_token")
-            //{
-            //    var response = await BuildRefreshToken(request.Refreshtoken);
-            //    return response;
-            //}
-            // var userModel = await HttpContext.Request.ReadFromJsonAsync<UserModel>();
+        //[HttpPost("token") ,AllowAnonymous]
+        //public async Task<IActionResult> Token(UserResponse user)
+        //{
+        //    //{
+        //    //    "requestObject":{ "UserName":"daud","Password":"123456"}
+        //    //}
+        //    //UserModel userModel = new UserModel();
+        //    //var userModel = JsonConvert.DeserializeObject<UserModel>(requestObj.requestObject.ToString());
+        //    //if (request.Grant_type == "password")
+        //    //{
+        //    //    var response = await BuildToken(request);
+        //    //    return await Task.FromResult(Ok(response));
+        //    //}
+        //    //else if (request.Grant_type == "withoutPassword")
+        //    //{
+        //    //    var response = await BuildTokenForAnotherCompany(Convert.ToInt16(request.CompanyId), request.Username);
+        //    //    return await Task.FromResult(Ok(response));
+        //    //}
+        //    //else if (request.Grant_type == "refresh_token")
+        //    //{
+        //    //    var response = await BuildRefreshToken(request.Refreshtoken);
+        //    //    return response;
+        //    //}
+        //    // var userModel = await HttpContext.Request.ReadFromJsonAsync<UserModel>();
           
-            var userDto = _userService.GetUser(userModel);
-            if (userDto == null)
-            {
-                HttpContext.Response.StatusCode = 401;
-                return await Task.FromResult(Ok(HttpContext.Response.StatusCode));
-            }          
-            var token = tokenService.BuildToken(userDto);
-            //await HttpContext.Response.WriteAsJsonAsync(new { token = token });
-          //  return;
-            return await Task.FromResult(Ok(new { token }));
-        }
+        //    var userDto = _userService.GetUser(user);
+        //    if (userDto == null)
+        //    {
+        //        HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+        //        return await Task.FromResult(Ok(HttpContext.Response.StatusCode));
+        //    }          
+        //    var token = tokenService.BuildToken(userDto);
+        //    //await HttpContext.Response.WriteAsJsonAsync(new { token = token });
+        //  //  return;
+        //    return await Task.FromResult(Ok(new { token }));
+        //}
        
         ////GET : /logout
         //[HttpGet("~/logout")]

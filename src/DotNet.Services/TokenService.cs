@@ -18,14 +18,14 @@ namespace DotNet.Services
         {
             _configuration = config;
         }
-        public TokenResult BuildToken(UserDto user)
+        public TokenResult BuildToken(AuthUser user)
         {
             //create claims details based on the user information
             var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("UserId", user.UserName.ToString()),
+                        new Claim("UserId", user.UserID.ToString()),
                         new Claim("OrginzationId", "1"),
                         //new Claim("DisplayName", user.DisplayName),
                         //new Claim("UserName", user.UserName),

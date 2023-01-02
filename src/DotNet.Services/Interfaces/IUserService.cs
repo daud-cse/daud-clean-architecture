@@ -10,8 +10,8 @@ namespace DotNet.Services.Interfaces
 {
     public interface IUserService
     {
-        UserDto GetUser(UserModel userModel);
+        AuthUser UserAuthentication(AuthUser userResponse);
+        Users GetUser(Users userResponse);
         Task<List<Users>> GetUsers();
-
     }
 }

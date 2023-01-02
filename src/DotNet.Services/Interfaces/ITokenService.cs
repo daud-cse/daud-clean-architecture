@@ -9,6 +9,6 @@ namespace DotNet.Services.Interfaces
 {
     public interface ITokenService
     {
-        TokenResult BuildToken(UserDto user);
+        TokenResult BuildToken(AuthUser user);
     }
 }

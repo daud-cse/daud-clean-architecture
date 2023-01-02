@@ -24,7 +24,7 @@ namespace DotNet.WebApi.Controllers
         {
             this._productService = productService;
         }       
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
 
         public ActionResult<List<ProductResponse>> GetProducts()
         {           
