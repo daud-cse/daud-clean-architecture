@@ -28,7 +28,7 @@ namespace DotNet.WebApi.Controllers.Common
             var resUser = _userService.UserAuthentication(user);
             if (resUser.UserAutoID == 0)
             {
-                HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;     
                 return await Task.FromResult(Ok(HttpContext.Response.StatusCode));
             }
             resUser.Token = tokenService.BuildToken(resUser);
