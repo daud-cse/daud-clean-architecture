@@ -18,14 +18,14 @@ namespace DotNet.ApplicationCore.Utils.Helper
         public static async Task<string> GetUserIdFromClaimIdentity(this IPrincipal identity)
         {
             ClaimsIdentity claimsIdentity = identity.Identity as ClaimsIdentity;
-            Claim claim = claimsIdentity?.FindFirst(EnumClaimType.UserId.ToString());
+            Claim claim = claimsIdentity?.FindFirst(EnumClaimType.UserID.ToString());
             return await Task.FromResult(Convert.ToString(claim?.Value));
         }
 
         public static async Task<int> GetUserAutoIdFromClaimIdentity(this IPrincipal identity)
         {
             ClaimsIdentity claimsIdentity = identity.Identity as ClaimsIdentity;
-            Claim claim = claimsIdentity?.FindFirst(EnumClaimType.UserId.ToString());
+            Claim claim = claimsIdentity?.FindFirst(EnumClaimType.UserID.ToString());
             return await Task.FromResult(Convert.ToInt16(claim?.Value));
         }
         /// <summary>

@@ -18,83 +18,83 @@ namespace DotNet.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> CreateProduct(Product productDetails)
-        {
-            if (productDetails != null)
-            {
-                await _unitOfWork.Products.Add(productDetails);
+        //public async Task<bool> CreateProduct(Product productDetails)
+        //{
+        //    if (productDetails != null)
+        //    {
+        //        await _unitOfWork.Products.Add(productDetails);
 
-                var result = _unitOfWork.Save();
+        //        var result = _unitOfWork.Save();
 
-                if (result > 0)
-                    return true;
-                else
-                    return false;
-            }
-            return false;
-        }
+        //        if (result > 0)
+        //            return true;
+        //        else
+        //            return false;
+        //    }
+        //    return false;
+        //}
 
-        public async Task<bool> DeleteProduct(int productId)
-        {
-            if (productId > 0)
-            {
-                var productDetails = await _unitOfWork.Products.GetById(productId);
-                if (productDetails != null)
-                {
-                    _unitOfWork.Products.Delete(productDetails);
-                    var result = _unitOfWork.Save();
+        //public async Task<bool> DeleteProduct(int productId)
+        //{
+        //    if (productId > 0)
+        //    {
+        //        var productDetails = await _unitOfWork.Products.GetById(productId);
+        //        if (productDetails != null)
+        //        {
+        //            _unitOfWork.Products.Delete(productDetails);
+        //            var result = _unitOfWork.Save();
 
-                    if (result > 0)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return false;
-        }
+        //            if (result > 0)
+        //                return true;
+        //            else
+        //                return false;
+        //        }
+        //    }
+        //    return false;
+        //}
 
-        public async Task<IEnumerable<Product>> GetAllProducts()
-        {
-            var productDetailsList = await _unitOfWork.Products.GetAll();
-            return productDetailsList;
-        }
+        //public async Task<IEnumerable<Product>> GetAllProducts()
+        //{
+        //    var productDetailsList = await _unitOfWork.Products.GetAll();
+        //    return productDetailsList;
+        //}
 
-        public async Task<Product> GetProductById(int productId)
-        {
-            if (productId > 0)
-            {
-                var productDetails = await _unitOfWork.Products.GetById(productId);
-                if (productDetails != null)
-                {
-                    return productDetails;
-                }
-            }
-            return null;
-        }
+        //public async Task<Product> GetProductById(int productId)
+        //{
+        //    if (productId > 0)
+        //    {
+        //        var productDetails = await _unitOfWork.Products.GetById(productId);
+        //        if (productDetails != null)
+        //        {
+        //            return productDetails;
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        public async Task<bool> UpdateProduct(Product productDetails)
-        {
-            if (productDetails != null)
-            {
-                var product = await _unitOfWork.Products.GetById(productDetails.ProductId);
-                if (product != null)
-                {
-                    //product.ProductName = productDetails.ProductName;
-                    //product.ProductDescription = productDetails.ProductDescription;
-                   // product.ProductPrice = productDetails.ProductPrice;
-                   // product.ProductStock = productDetails.ProductStock;
+        //public async Task<bool> UpdateProduct(Product productDetails)
+        //{
+        //    if (productDetails != null)
+        //    {
+        //        var product = await _unitOfWork.Products.GetById(productDetails.ProductId);
+        //        if (product != null)
+        //        {
+        //            //product.ProductName = productDetails.ProductName;
+        //            //product.ProductDescription = productDetails.ProductDescription;
+        //           // product.ProductPrice = productDetails.ProductPrice;
+        //           // product.ProductStock = productDetails.ProductStock;
 
-                    _unitOfWork.Products.Update(product);
+        //            _unitOfWork.Products.Update(product);
 
-                    var result = _unitOfWork.Save();
+        //            var result = _unitOfWork.Save();
 
-                    if (result > 0)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            return false;
-        }
+        //            if (result > 0)
+        //                return true;
+        //            else
+        //                return false;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

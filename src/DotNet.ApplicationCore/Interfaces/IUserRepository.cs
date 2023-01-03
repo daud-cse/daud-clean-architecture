@@ -7,7 +7,10 @@ using DotNet.ApplicationCore.Entities;
 namespace DotNet.ApplicationCore.Interfaces
 {
 
-    public interface IUserRepository: IGenericRepository<Users>
-    {      
+    public interface IUserRepository : IGenericRepository<Users>
+    {
+        AuthUser UserAuthentication(AuthUser userResponse);
+        Task<IEnumerable<Users>> GetAll();
+        Task<Users> GetByID(int id);
     }
 }

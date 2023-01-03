@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.UnitTests", "tests\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.IntegrationTests", "tests\DotNet.IntegrationTests\DotNet.IntegrationTests.csproj", "{DA1BC996-BAB4-4FD9-A94A-E38B6181E17A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Services", "src\DotNet.Services\DotNet.Services.csproj", "{EAC655BB-F547-40DD-A182-0F2C79E11B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.Services", "src\DotNet.Services\DotNet.Services.csproj", "{EAC655BB-F547-40DD-A182-0F2C79E11B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

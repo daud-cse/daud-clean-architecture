@@ -8,7 +8,7 @@ using DotNet.ApplicationCore.DTOs;
 using Microsoft.AspNetCore.Http;
 using DotNet.Services.Interfaces;
 
-namespace DotNet.Services
+namespace DotNet.Services.Common
 {
     public class TokenService : ITokenService
     {

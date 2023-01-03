@@ -1,5 +1,6 @@
 ﻿using DotNet.ApplicationCore.DTOs;
 using DotNet.ApplicationCore.Utils;
+using DotNet.Services.Common;
 using DotNet.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,10 @@ namespace DotNet.WebApi.Controllers.Common
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly UserService _userService;
         private readonly ITokenService tokenService;
         private readonly AppSettingsJson appSettingsJson;
-        public AuthenticateController(ITokenService tokenService, IUserService userService, IOptionsSnapshot<AppSettingsJson> optionsSnapshot)
+        public AuthenticateController(ITokenService tokenService, UserService userService, IOptionsSnapshot<AppSettingsJson> optionsSnapshot)
         {
             this.tokenService = tokenService;
             _userService = userService;
@@ -25,15 +26,15 @@ namespace DotNet.WebApi.Controllers.Common
         [HttpPost("authenticate"), AllowAnonymous]
         public async Task<IActionResult> Authenticate(AuthUser user)
         {
-            var resUser = _userService.UserAuthentication(user);
-            if (resUser.UserAutoID == 0)
+            ResponseMessage rm = _userService.UserAuthentication(user);
+            AuthUser authUser = (AuthUser)rm.ResponseObj;
+            if (authUser.UserAutoID == 0)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;     
                 return await Task.FromResult(Ok(HttpContext.Response.StatusCode));
             }
-            resUser.Token = tokenService.BuildToken(resUser);
-            return await Task.FromResult(Ok(resUser));
+            authUser.Token = tokenService.BuildToken(authUser);
+            return await Task.FromResult(Ok(authUser));
         }
     }
-
 }

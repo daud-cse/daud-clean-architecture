@@ -1,46 +1,41 @@
-﻿using DotNet.ApplicationCore.DTOs;
-
+﻿using AutoMapper;
+using DotNet.ApplicationCore.DTOs;
+using DotNet.ApplicationCore.Entities;
+using DotNet.ApplicationCore.Interfaces;
+using DotNet.Infrastructure.Persistence.Contexts;
 using Microsoft.AspNetCore.Http;
-using DotNet.ApplicationCore.Utils.Helper;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotNet.Infrastructure.Persistence.Contexts;
-using AutoMapper;
-using DotNet.ApplicationCore.Entities;
-using DotNet.ApplicationCore.Interfaces;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using static DotNet.ApplicationCore.Utils.Enum.GlobalEnum;
 
-namespace DotNet.Infrastructure.Persistence.Repositories.User
+namespace DotNet.Repository.Common
 {
-    //GenericRepository<Users>,
-    public class UserRepository :  IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IMapper _mapper;
         private readonly ILogger<Users> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public DotNetContext _context;
-
-
+        private readonly DotNetContext _dotnetContext;
 
         public UserRepository(
+            DotNetContext dotnetContext,
              IHttpContextAccessor httpContextAccessor,
-              DotNetContext context,
              IMapper mapper,
               Microsoft.Extensions.Logging.ILogger<Users> logger
              )
         {
             _mapper = mapper;
             _logger = logger;
+            _dotnetContext = dotnetContext;
             _httpContextAccessor = httpContextAccessor;
-            _context = context;
         }
         public AuthUser UserAuthentication(AuthUser user)
         {
-            var dbUser = _context.Users.SingleOrDefault(x => string.Equals(x.UserID, user.UserID) && string.Equals(x.Password, user.Password));
+            var dbUser = _dotnetContext.Users.SingleOrDefault(x => string.Equals(x.UserID, user.UserID) && string.Equals(x.Password, user.Password));
             AuthUser authUser = new AuthUser();
             if (dbUser != null)
             {
@@ -56,14 +51,14 @@ namespace DotNet.Infrastructure.Persistence.Repositories.User
             //int orginzationId = await _httpContextAccessor.HttpContext.User.GetOrginzationIdFromClaimIdentity();
             int orginzationId = 1;
             //var userId = await _httpContextAccessor.HttpContext.User.GetUserIdFromClaimIdentity();
-            var users = _context.Users.Where(x => x.OrganizationId == orginzationId).ToList();
+            var users = _dotnetContext.Users.Where(x=>x.OrganizationId == orginzationId).ToList();
             return await Task.FromResult(users);
         }
         public async Task<Users> GetByID(int id)
         {
-            var result = _context.Users.SingleOrDefault(x => x.UserAutoId == id);
+
+            var result = _dotnetContext.Users.SingleOrDefault(x => x.UserAutoId == id);
             return result;
         }
     }
 }
-

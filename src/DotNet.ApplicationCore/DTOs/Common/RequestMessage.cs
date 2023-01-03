@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DotNet.ApplicationCore.DTOs
 {
-    public class RequestObj
+    public class RequestMessage
     {
-        public object requestObject { get; set; }
+        public object RequestObj { get; set; }
     }
 }

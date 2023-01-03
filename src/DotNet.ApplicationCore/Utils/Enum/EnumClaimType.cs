@@ -6,10 +6,10 @@ namespace DotNet.ApplicationCore.Utils.Enum
 {
     public enum EnumClaimType
     {
-        UserId,
+        UserID,
         UserName,
         CompanyName,
-        CompanyId,
+        CompanyID,
         OrganizationId,
         Email,        
         Rights,
