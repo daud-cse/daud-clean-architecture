@@ -1,12 +1,13 @@
-﻿using DotNet.ApplicationCore.Interfaces;
-using DotNet.Infrastructure.Persistence.Contexts;
+﻿using DotNet.Infrastructure.Persistence.Contexts;
+using DotNet.Services.Repositories.Interfaces;
+using DotNet.Services.Repositories.Interfaces.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNet.Infrastructure.Persistence.Repositories
+namespace DotNet.Services.Repositories.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {

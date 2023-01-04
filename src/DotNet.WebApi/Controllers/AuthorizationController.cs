@@ -3,18 +3,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using DotNet.ApplicationCore.DTOs;
-using DotNet.ApplicationCore.Interfaces;
 using DotNet.ApplicationCore.Utils;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using DotNet.Services.Interfaces;
+using DotNet.Services.Services.Infrastructure;
+using DotNet.Services.Services.Interfaces.Common;
 
 namespace DotNet.WebApi.Controllers
 {
     //[Route("api/[controller]")]
     [Route("api/Authorization")]
-
-
 
     
     [ApiController]

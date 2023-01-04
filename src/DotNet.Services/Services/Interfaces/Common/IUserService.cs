@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNet.Services.Interfaces
+namespace DotNet.Services.Services.Interfaces.Common
 {
     public interface IUserService
     {
         ResponseMessage UserAuthentication(AuthUser userResponse);
-        //ResponseMessage GetAll(DotNetContext context);
-        //ResponseMessage GetByID(int id, DotNetContext context);
+        ResponseMessage GetAll();
+        ResponseMessage GetByID(int id);
         //Task<Users> Add(Users entity);
         //Task<Users> Update(Users entity);
         //Task<bool> Delete(int id);

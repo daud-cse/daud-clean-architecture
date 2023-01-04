@@ -6,9 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using DotNet.ApplicationCore.DTOs;
 using Microsoft.AspNetCore.Http;
-using DotNet.Services.Interfaces;
 
-namespace DotNet.Services.Common
+namespace DotNet.Services.Services.Infrastructure
 {
     public class TokenService : ITokenService
     {

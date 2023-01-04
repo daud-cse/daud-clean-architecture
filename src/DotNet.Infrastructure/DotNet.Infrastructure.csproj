@@ -6,15 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Persistence\Repositories\Finance\**" />
-    <Compile Remove="Persistence\Repositories\Inventory\**" />
-    <EmbeddedResource Remove="Persistence\Repositories\Finance\**" />
-    <EmbeddedResource Remove="Persistence\Repositories\Inventory\**" />
-    <None Remove="Persistence\Repositories\Finance\**" />
-    <None Remove="Persistence\Repositories\Inventory\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNet.Services.Interfaces
+namespace DotNet.Services.Services.Interfaces
 {
-  public  interface IProductService
+    public interface IProductService
     {
         //Task<bool> CreateProduct(Product productDetails);
 

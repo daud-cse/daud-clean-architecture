@@ -2,9 +2,10 @@
 using DotNet.ApplicationCore.Entities;
 using System.Collections.Generic;
 
-namespace DotNet.ApplicationCore.Interfaces
+namespace DotNet.Services.Repositories.Interfaces
 {
-    public interface IProductRepository : IGenericRepository<Product>
+    //: IGenericRepository<Product>
+    public interface IProductRepository 
     {     
 
     }

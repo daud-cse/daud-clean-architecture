@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DotNet.ApplicationCore.DTOs;
 using DotNet.ApplicationCore.Exceptions;
-using DotNet.ApplicationCore.Interfaces;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using DotNet.Services.Interfaces;
 using DotNet.ApplicationCore.Entities;
+using DotNet.Services.Services.Interfaces;
 
 namespace DotNet.WebApi.Controllers
 {

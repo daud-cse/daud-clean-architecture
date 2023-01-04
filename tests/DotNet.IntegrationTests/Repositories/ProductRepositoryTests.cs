@@ -2,7 +2,6 @@
 using DotNet.ApplicationCore.DTOs;
 using DotNet.ApplicationCore.Exceptions;
 using DotNet.ApplicationCore.Mappings;
-using DotNet.Infrastructure.Persistence.Repositories;
 using Xunit;
 
 namespace DotNet.IntegrationTests.Repositories

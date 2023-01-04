@@ -2,21 +2,22 @@
 using DotNet.ApplicationCore.DTOs;
 using DotNet.ApplicationCore.Entities;
 using DotNet.ApplicationCore.Exceptions;
-using DotNet.ApplicationCore.Interfaces;
 using DotNet.ApplicationCore.Utils;
 using DotNet.Infrastructure.Persistence.Contexts;
-using System;
+using DotNet.Services.Repositories.Infrastructure;
+using DotNet.Services.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DotNet.Infrastructure.Persistence.Repositories
+namespace DotNet.Services.Repositories
 {
-    public class ProductRepository : GenericRepository<Product>, IProductRepository
+    // IGenericRepository<Product>,
+    public class ProductRepository : IProductRepository
     {
         private readonly DotNetContext storeContext;
-      //  private readonly IMapper mapper;
+        //  private readonly IMapper mapper;
 
-        public ProductRepository(DotNetContext storeContext):base(storeContext)
+        public ProductRepository(DotNetContext storeContext) //: base(storeContext)
         {
             this.storeContext = storeContext;
             //this.mapper = mapper;

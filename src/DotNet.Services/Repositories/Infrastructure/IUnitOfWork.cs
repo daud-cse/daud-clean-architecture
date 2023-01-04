@@ -1,9 +1,10 @@
-﻿using DotNet.ApplicationCore.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DotNet.Services.Repositories.Interfaces;
+using DotNet.Services.Repositories.Interfaces.Common;
 
-namespace DotNet.ApplicationCore.Interfaces
+namespace DotNet.Services.Repositories.Infrastructure
 {
     public interface IUnitOfWork : IDisposable
     {

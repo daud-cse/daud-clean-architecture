@@ -1,10 +1,10 @@
 ﻿using DotNet.ApplicationCore.DTOs;
-using DotNet.Services.Interfaces;
-using DotNet.ApplicationCore.Interfaces;
-using DotNet.Infrastructure.Persistence.Repositories.User;
 using static DotNet.ApplicationCore.Utils.Enum.GlobalEnum;
+using DotNet.Services.Repositories.Interfaces;
+using DotNet.Services.Repositories.Interfaces.Common;
+using DotNet.Services.Services.Interfaces.Common;
 
-namespace DotNet.Services.Common
+namespace DotNet.Services.Services.Common
 {
     public class UserService : IUserService
     {
@@ -12,10 +12,10 @@ namespace DotNet.Services.Common
         ResponseMessage rm = new ResponseMessage();
         public UserService(
 
-              UserRepository userRepository
+              IUserRepository userRepository
             )
         {
-           
+
             _userRepository = userRepository;
         }
 
@@ -24,10 +24,10 @@ namespace DotNet.Services.Common
             try
             {
                 AuthUser authUser = _userRepository.UserAuthentication(user);
-                if(authUser.UserAutoID > 0)
+                if (authUser.UserAutoID > 0)
                 {
                     rm.StatusCode = ReturnStatus.Success;
-                    rm.ResponseObj= authUser;
+                    rm.ResponseObj = authUser;
                 }
                 else
                 {
@@ -48,7 +48,6 @@ namespace DotNet.Services.Common
             {
                 rm.ResponseObj = _userRepository.GetAll();
                 rm.StatusCode = ReturnStatus.Success;
-
             }
             catch (Exception ex)
             {

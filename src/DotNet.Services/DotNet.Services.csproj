@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DotNet.Repository\DotNet.Repository.csproj" />
+    <!--<ProjectReference Include="..\..\DotNet.Repository\DotNet.Repository.csproj" />-->
     <ProjectReference Include="..\DotNet.ApplicationCore\DotNet.ApplicationCore.csproj" />
     <ProjectReference Include="..\DotNet.Infrastructure\DotNet.Infrastructure.csproj" />
   </ItemGroup>

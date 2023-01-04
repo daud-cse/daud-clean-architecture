@@ -1,8 +1,6 @@
 ﻿using DotNet.ApplicationCore.DTOs;
 using DotNet.ApplicationCore.Entities;
-using DotNet.ApplicationCore.Interfaces;
-using DotNet.Services.Common;
-using DotNet.Services.Interfaces;
+using DotNet.Services.Services.Interfaces.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,15 +20,17 @@ namespace DotNet.WebApi.Controllers.Common
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
         
 
-        public UsersController(UserService userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
 
-        [HttpGet, AllowAnonymous]
+        //[HttpGet, AllowAnonymous]
+        [HttpPost("getAll"), AllowAnonymous]
+        [ResponseType(typeof(ResponseMessage))]
         public ResponseMessage GetAll(RequestMessage rm)
         {
             //try
@@ -76,11 +76,8 @@ namespace DotNet.WebApi.Controllers.Common
             //    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             //}
 
-
-
-
             Users user = JsonConvert.DeserializeObject<Users>(rm.RequestObj.ToString());
-            return _userService.GetByID(user.UserAutoId);
+            return _userService.GetByID(user.UserAutoID);
         }
 
         [HttpPost]

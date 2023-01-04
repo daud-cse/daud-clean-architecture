@@ -1,13 +1,14 @@
 ﻿using DotNet.ApplicationCore.Entities;
-using DotNet.ApplicationCore.Interfaces;
-using DotNet.Services.Interfaces;
+using DotNet.Services.Repositories.Infrastructure;
+using DotNet.Services.Repositories.Interfaces;
+using DotNet.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNet.Services
+namespace DotNet.Services.Services
 {
     public class ProductService : IProductService
     {

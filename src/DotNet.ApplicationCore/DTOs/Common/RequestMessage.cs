@@ -7,5 +7,21 @@ namespace DotNet.ApplicationCore.DTOs
     public class RequestMessage
     {
         public object RequestObj { get; set; }
+        public string token { get; set; }
+
+
+
+
+  //pageIndex: number;
+  //pageSize: number;
+  //sortBy: string;
+  //sortOrder: string;
+  //filterBy: string;
+  //branchID: number;
+  //userID: string;
+  //unitID: number;
+  //organizationID?:number;
+  //workingUnitID?:number;
+  //UserAutoID?:number;
     }
 }

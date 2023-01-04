@@ -1,5 +1,4 @@
-﻿using DotNet.ApplicationCore.Interfaces;
-using DotNet.Infrastructure.Persistence.Contexts;
+﻿using DotNet.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNet.Infrastructure.Persistence.Repositories
+namespace DotNet.Services.Repositories.Infrastructure
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
@@ -15,7 +14,7 @@ namespace DotNet.Infrastructure.Persistence.Repositories
 
         protected GenericRepository(DotNetContext dotnetContext)
         {
-            this._dotnetContext = dotnetContext;
+            _dotnetContext = dotnetContext;
         }
         public async Task<T> GetByID(int id)
         {
