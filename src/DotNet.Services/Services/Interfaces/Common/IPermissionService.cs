@@ -9,19 +9,10 @@ using System.Threading.Tasks;
 
 namespace DotNet.Services.Services.Interfaces.Common
 {
-    public interface IUserService
+    public interface IPermissionService
     {
-        ResponseMessage UserAuthentication(AuthUser userResponse);
         ResponseMessage GetAll();
+        ResponseMessage GetAllByOrganizationUser();
         ResponseMessage GetByID(int id);
-        ResponseMessage Add(Users user);
-        //Task<Users> Update(Users entity);
-        //Task<bool> Delete(int id);
-
-
-
-        //Task<List<Users>> GetUsers();
-
-        //Users GetUserByID(Users userResponse);
     }
 }

@@ -1,12 +1,17 @@
 ﻿using DotNet.ApplicationCore.DTOs;
+using DotNet.ApplicationCore.Entities;
 using DotNet.ApplicationCore.Utils;
+using DotNet.Services.Services.Common;
 using DotNet.Services.Services.Infrastructure;
 using DotNet.Services.Services.Interfaces.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using static DotNet.ApplicationCore.Utils.Enum.GlobalEnum;
 
 namespace DotNet.WebApi.Controllers.Common
 {
@@ -15,26 +20,41 @@ namespace DotNet.WebApi.Controllers.Common
     public class AuthenticateController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IPermissionService _permissionService;
         private readonly ITokenService tokenService;
         private readonly AppSettingsJson appSettingsJson;
-        public AuthenticateController(ITokenService tokenService, IUserService userService, IOptionsSnapshot<AppSettingsJson> optionsSnapshot)
+        public AuthenticateController(
+            ITokenService tokenService, 
+            IUserService userService,
+            IPermissionService permissionService,
+            IOptionsSnapshot<AppSettingsJson> optionsSnapshot
+            )
         {
             this.tokenService = tokenService;
             _userService = userService;
+            _permissionService = permissionService;
             appSettingsJson = optionsSnapshot.Value;
         }
         [HttpPost("authenticate"), AllowAnonymous]
         public async Task<IActionResult> Authenticate(AuthUser user)
         {
-            ResponseMessage rm = _userService.UserAuthentication(user);
-            AuthUser authUser = (AuthUser)rm.ResponseObj;
+            ResponseMessage resMes = _userService.UserAuthentication(user);
+            
+            AuthUser authUser = (AuthUser)resMes.ResponseObj;
             if (authUser== null || authUser.UserAutoID == 0)
             {
-                HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;     
-                return await Task.FromResult(Ok(HttpContext.Response.StatusCode));
+                resMes.StatusCode = ReturnStatus.Failed;
+                return await Task.FromResult(Ok(resMes));
             }
-            authUser.Token = tokenService.BuildToken(authUser);
-            return await Task.FromResult(Ok(authUser));
+
+            authUser.TokenResult = tokenService.BuildToken(authUser);
+
+            ResponseMessage permissionRes = _permissionService.GetAllByOrganizationUser();
+            authUser.Permissions = (List<Permission>)permissionRes.ResponseObj;
+
+            resMes.ResponseObj = authUser;
+            resMes.StatusCode = ReturnStatus.Success;
+            return await Task.FromResult(Ok(resMes));
         }
     }
 }

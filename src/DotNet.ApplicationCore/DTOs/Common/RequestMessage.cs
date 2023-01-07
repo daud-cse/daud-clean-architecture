@@ -7,7 +7,7 @@ namespace DotNet.ApplicationCore.DTOs
     public class RequestMessage
     {
         public object RequestObj { get; set; }
-        public string token { get; set; }
+        public string Token { get; set; }
 
 
 

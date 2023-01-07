@@ -9,7 +9,7 @@ namespace DotNet.Services.Repositories.Infrastructure
     {
         Task<T> GetByID(int id);
         Task<IEnumerable<T>> GetAll();
-        //Task Add(T entity);
+        Task<T> Add(T entity);
         //void Delete(T entity);
         //void Update(T entity);
     }

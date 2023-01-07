@@ -28,10 +28,9 @@ namespace DotNet.WebApi.Controllers.Common
             _userService = userService;
         }
 
-        //[HttpGet, AllowAnonymous]
-        [HttpPost("getAll"), AllowAnonymous]
+        [HttpGet("getAll")]
         [ResponseType(typeof(ResponseMessage))]
-        public ResponseMessage GetAll(RequestMessage rm)
+        public ResponseMessage GetAll()
         {
             //try
             //{
@@ -58,31 +57,17 @@ namespace DotNet.WebApi.Controllers.Common
         [HttpGet, AllowAnonymous]
         [Route("getByID/{id}")]
         [ResponseType(typeof(ResponseMessage))]
-        public ResponseMessage GetByID(RequestMessage rm)
-        //public async Task<IActionResult> GetByID(RequestMessage rm)
+        public ResponseMessage GetByID(int id)
         {
-            //try
-            //{
-            //var response = await _userService.GetByID(id);
-            //    if (response != null)
-            //    {
-            //        return Ok(response);
-            //    }
-            //    return StatusCode(StatusCodes.Status204NoContent);
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex, ex.Message);
-            //    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            //}
-
-            Users user = JsonConvert.DeserializeObject<Users>(rm.RequestObj.ToString());
-            return _userService.GetByID(user.UserAutoID);
+            return _userService.GetByID(id);
         }
 
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("add")]
+        [ResponseType(typeof(ResponseMessage))]
+        public ResponseMessage Post(RequestMessage reqMes)
         {
+            Users user = JsonConvert.DeserializeObject<Users>(reqMes.RequestObj.ToString());
+            return _userService.Add(user);
         }
 
         [HttpPut("{id}")]

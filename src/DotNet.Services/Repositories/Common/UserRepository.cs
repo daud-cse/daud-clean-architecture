@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using DotNet.Services.Repositories.Interfaces.Common;
 using DotNet.Services.Repositories.Infrastructure;
 using DotNet.Services.Repositories.Interfaces;
+using DotNet.ApplicationCore.Utils.Enum;
 
 namespace DotNet.Services.Repositories.Common
 {
@@ -38,23 +39,29 @@ namespace DotNet.Services.Repositories.Common
         }
         public AuthUser UserAuthentication(AuthUser user)
         {
-            var dbUser = _context.Users.SingleOrDefault(x => string.Equals(x.UserID, user.UserID) && string.Equals(x.Password, user.Password));
+            Users dbUser = _context.Users.SingleOrDefault(x => string.Equals(x.UserID, user.UserID) && string.Equals(x.Password, user.Password));
             AuthUser authUser = new AuthUser();
             if (dbUser != null)
             {
                 authUser.UserAutoID = dbUser.UserAutoID;
                 authUser.UserID = dbUser.UserID;
-                authUser.Password = dbUser.Password;
+                authUser.UserTypeID = dbUser.UserTypeID;
+                authUser.OrganizationID = dbUser.OrganizationID;
+                authUser.DesignationID = dbUser.DesignationID;
+                authUser.UserFullName = dbUser.UserFullName;
+                authUser.RoleID = dbUser.RoleID;
             }
             return authUser;
         }
 
         public async Task<IEnumerable<Users>> GetAll()
         {
-            //int orginzationId = await _httpContextAccessor.HttpContext.User.GetOrginzationIdFromClaimIdentity();
-            int orginzationId = 1;
-            //var userId = await _httpContextAccessor.HttpContext.User.GetUserIdFromClaimIdentity();
-            var users = _context.Users.Where(x => x.OrganizationID == orginzationId).ToList();
+            int orginzationID = await _httpContextAccessor.HttpContext.User.GetOrginzationIdFromClaimIdentity();
+            var userId = await _httpContextAccessor.HttpContext.User.GetUserIdFromClaimIdentity();
+
+            //ClaimTypeObj claimTypeObj = await _httpContextAccessor.HttpContext.User.GetAllData();
+
+            var users = _context.Users.Where(x => x.OrganizationID == orginzationID).ToList();
             return await Task.FromResult(users);
         }
         public async Task<Users> GetByID(int id)
@@ -62,6 +69,12 @@ namespace DotNet.Services.Repositories.Common
             var result = _context.Users.SingleOrDefault(x => x.UserAutoID == id);
             return result;
         }
+        //public async Task<Users> Add(Users user)
+        //{
+        //    var result = _context.Users.Add(user);
+        //    _context.SaveChanges();
+        //    return _context.Users.SingleOrDefault(x => x.UserAutoID == user.UserAutoID);
+        //}
     }
 }
 

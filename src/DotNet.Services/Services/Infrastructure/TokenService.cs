@@ -24,11 +24,13 @@ namespace DotNet.Services.Services.Infrastructure
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("UserId", user.UserID.ToString()),
-                        new Claim("OrginzationId", "1"),
-                        //new Claim("DisplayName", user.DisplayName),
-                        //new Claim("UserName", user.UserName),
-                        //new Claim("Email", user.Email)
+                        new Claim("UserId", user.UserID),
+                        new Claim("UserAutoID", user.UserAutoID.ToString()),
+                        new Claim("UserTypeID", user.UserTypeID.ToString()),
+                        new Claim("OrganizationID", user.OrganizationID.ToString()),
+                        new Claim("DesignationID", user.DesignationID.ToString()),
+                        new Claim("UserFullName", user.UserFullName),
+                        new Claim("RoleID", user.RoleID.ToString()),
                     };
 
             //var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
@@ -51,7 +53,6 @@ namespace DotNet.Services.Services.Infrastructure
                 Message = "Success"
             };
             return tokenResult;
-
         }
 
 

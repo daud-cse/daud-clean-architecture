@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DotNet.ApplicationCore.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DotNet.ApplicationCore.DTOs
@@ -30,7 +32,13 @@ namespace DotNet.ApplicationCore.DTOs
     {
         public int UserAutoID { get; set; }
         public string UserID { get; set; }
+        public int UserTypeID { get; set; }
+        public int OrganizationID { get; set; }
+        public int DesignationID { get; set; }
+        public string UserFullName { get; set; }
+        public int RoleID { get; set; }
+        public TokenResult TokenResult { get; set; }
+        public List<Permission>? Permissions { get; set; }
         public string Password { get; set; }
-        public TokenResult Token { get; set; }
     }
 }

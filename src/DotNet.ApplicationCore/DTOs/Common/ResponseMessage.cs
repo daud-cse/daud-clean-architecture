@@ -10,5 +10,7 @@ namespace DotNet.ApplicationCore.DTOs
         public ReturnStatus StatusCode { get; set; }
         public string Message { get; set; }
         public object ResponseObj { get; set; }
+        public string Token { get; set; }
+
     }
 }

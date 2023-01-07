@@ -9,13 +9,11 @@ using DotNet.Services.Repositories.Infrastructure;
 namespace DotNet.Services.Repositories.Interfaces.Common
 {
 
-    //: IGenericRepository<Users>
-    public interface IUserRepository : IGenericRepository<Users>
+    //: IGenericRepository<Permissions>
+    public interface IPermissionRepository : IGenericRepository<Permission>
     {
-        AuthUser UserAuthentication(AuthUser userResponse);
-        //Task<IEnumerable<Users>> GetAll();
-        //Task<Users> GetByID(int id);
-        //Task<Users> Add(Users user);
-
+        Task<IEnumerable<Permission>> GetAllByOrganizationUser();
+        //Task<IEnumerable<Permissions>> GetAll();
+        //Task<Permissions> GetByID(int id);
     }
 }

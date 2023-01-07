@@ -49,6 +49,8 @@ namespace DotNet.Services
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
+
         }
         public static void AddServices(this IServiceCollection services)
         {
@@ -56,6 +58,8 @@ namespace DotNet.Services
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IPermissionService, PermissionService>();
+
         }
     }
 }

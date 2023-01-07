@@ -3,38 +3,29 @@ using static DotNet.ApplicationCore.Utils.Enum.GlobalEnum;
 using DotNet.Services.Repositories.Interfaces;
 using DotNet.Services.Repositories.Interfaces.Common;
 using DotNet.Services.Services.Interfaces.Common;
-using DotNet.ApplicationCore.Entities;
 
 namespace DotNet.Services.Services.Common
 {
-    public class UserService : IUserService
+    public class PermissionService : IPermissionService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IPermissionRepository _PermissionRepository;
         ResponseMessage rm = new ResponseMessage();
-        public UserService(
+        public PermissionService(
 
-              IUserRepository userRepository
+              IPermissionRepository PermissionRepository
             )
         {
 
-            _userRepository = userRepository;
+            _PermissionRepository = PermissionRepository;
         }
 
-        public ResponseMessage UserAuthentication(AuthUser user)
+
+        public ResponseMessage GetAllByOrganizationUser()
         {
             try
             {
-                AuthUser authUser = _userRepository.UserAuthentication(user);
-                if (authUser.UserAutoID > 0)
-                {
-                    rm.StatusCode = ReturnStatus.Success;
-                    rm.ResponseObj = authUser;
-                }
-                else
-                {
-                    rm.Message = "Invalid UserID or Password";
-                    rm.StatusCode = ReturnStatus.Failed;
-                }
+                rm.ResponseObj = _PermissionRepository.GetAllByOrganizationUser().Result;
+                rm.StatusCode = ReturnStatus.Success;
             }
             catch (Exception ex)
             {
@@ -43,11 +34,13 @@ namespace DotNet.Services.Services.Common
             }
             return rm;
         }
+        
+
         public ResponseMessage GetAll()
         {
             try
             {
-                rm.ResponseObj = _userRepository.GetAll();
+                rm.ResponseObj = _PermissionRepository.GetAll();
                 rm.StatusCode = ReturnStatus.Success;
             }
             catch (Exception ex)
@@ -62,22 +55,7 @@ namespace DotNet.Services.Services.Common
             rm = new ResponseMessage();
             try
             {
-                rm.ResponseObj = _userRepository.GetByID(id);
-                rm.StatusCode = ReturnStatus.Success;
-            }
-            catch (Exception ex)
-            {
-                rm.Message = ex.Message.ToString();
-                rm.StatusCode = ReturnStatus.Failed;
-            }
-            return rm;
-        }
-        public ResponseMessage Add(Users user)
-        {
-            rm = new ResponseMessage();
-            try
-            {
-                rm.ResponseObj = _userRepository.Add(user);
+                rm.ResponseObj = _PermissionRepository.GetByID(id);
                 rm.StatusCode = ReturnStatus.Success;
             }
             catch (Exception ex)
