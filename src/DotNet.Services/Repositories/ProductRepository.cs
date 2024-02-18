@@ -17,6 +17,7 @@ namespace DotNet.Services.Repositories
         private readonly DotNetContext storeContext;
         //  private readonly IMapper mapper;
 
+
         public ProductRepository(DotNetContext storeContext) //: base(storeContext)
         {
             this.storeContext = storeContext;
